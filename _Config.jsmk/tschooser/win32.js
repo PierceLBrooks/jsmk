@@ -19,16 +19,16 @@ exports.GetToolsets = function()
     results.push([teensy, "teensy40_oc"]);
     for(let r=0;r<results.length;r++)
     {
-    try
-    {
-        result.push(new (results[r][0])(results[r][1]));
-    }
-    catch(err)
-    {
-        jsmk.DEBUG("tschooser: no teensy dev on windows " + err);
-        results.splice(r, 1);
-        r -= 1;
-    }
+        try
+        {
+            result.push(new (results[r][0])(results[r][1]));
+        }
+        catch(err)
+        {
+            jsmk.DEBUG("tschooser: no teensy dev on windows " + err);
+            results.splice(r, 1);
+            r -= 1;
+        }
     }
     if(results.length == 0)
     {
@@ -42,16 +42,16 @@ exports.GetToolsets = function()
     results.push([arduino, "uno"]);
     for(let r=0;r<results.length;r++)
     {
-    try
-    {
-        result.push(new (results[r][0])(results[r][1]));
-    }
-    catch(err)
-    {
-        jsmk.DEBUG("tschooser: no arduino dev on windows "+err);
-        results.splice(r, 1);
-        r -= 1;
-    }
+        try
+        {
+            result.push(new (results[r][0])(results[r][1]));
+        }
+        catch(err)
+        {
+            jsmk.DEBUG("tschooser: no arduino dev on windows "+err);
+            results.splice(r, 1);
+            r -= 1;
+        }
     }
     if(results.length == 0)
     {
@@ -64,16 +64,16 @@ exports.GetToolsets = function()
     results.push([mingw, undefined]);
     for(let r=0;r<results.length;r++)
     {
-    try
-    {
-        result.push(new (results[r][0])(results[r][1]));
-    }
-    catch(err)
-    {
-        jsmk.DEBUG("tschooser: no c++ dev on windows " + err);
-        results.splice(r, 1);
-        r -= 1;
-    }
+        try
+        {
+            result.push(new (results[r][0])(results[r][1]));
+        }
+        catch(err)
+        {
+            jsmk.DEBUG("tschooser: no c++ dev on windows " + err);
+            results.splice(r, 1);
+            r -= 1;
+        }
     }
     if(results.length == 0)
     {
