@@ -12,7 +12,7 @@ exports.GetToolsets = function()
     let mingw = jsmk.LoadConfig("toolset/mingw.js").Toolset;
 
     let result = [];
-	let results = [];
+    let results = [];
 
     results.push([teensy, "teensyLC"]);
     results.push([teensy, "teensy40"]);
