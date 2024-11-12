@@ -13,7 +13,7 @@
 var Foundation = require("./foundation.js").Foundation;
 
 const sdkVersions = ["10.0.22621.0", "10.0.22000.0"];
-const vcVers = "14.41.34120"; // "14.40.33807"; // "14.38.33130"; // "14.37.32822"; // "14.36.32532"; // "14.35.32215";
+const vcVers = "14.39.33519"; // "14.40.33807"; // "14.38.33130"; // "14.37.32822"; // "14.36.32532"; // "14.35.32215";
 const vsDir = "C:/Program Files/Microsoft Visual Studio/2022/Community/";
 const sdkRoot = "C:/Program Files (x86)/Windows Kits";
 const msvcDir = `${vsDir}/VC/Tools/MSVC/${vcVers}`;

@@ -8,9 +8,10 @@ class YACC extends ToolCli
     {
         let exefile = "bison";
         let arg0 = jsmk.path.resolveExeFile(exefile, 
-                                            ts.BuildVars.LINUX_TOOLCHAIN);
-        if(!arg0) throw new Error("Can't resolve linux bison executable");
-        super(ts, "linux/yacc", {
+                                            ts.BuildVars.MINGW_TOOLCHAIN ? ts.BuildVars.MINGW_TOOLCHAIN : ts.BuildVars.LINUX_TOOLCHAIN);
+        let name = ts.BuildVars.MINGW_TOOLCHAIN ? "mingw" : "linux";
+        if(!arg0) throw new Error("Can't resolve "+name+" bison executable");
+        super(ts, name+"/yacc", {
             Role:  ToolCli.Role.Compile,
             ActionStage: "build",
             Semantics: ToolCli.Semantics.ManyToMany,
@@ -28,9 +29,10 @@ class LEX extends ToolCli
     {
         let exefile = "flex";
         let arg0 = jsmk.path.resolveExeFile(exefile, 
-                                            ts.BuildVars.LINUX_TOOLCHAIN);
-        if(!arg0) throw new Error("Can't resolve linux bison executable");
-        super(ts, "linux/lex", {
+                                            ts.BuildVars.MINGW_TOOLCHAIN ? ts.BuildVars.MINGW_TOOLCHAIN : ts.BuildVars.LINUX_TOOLCHAIN);
+        let name = ts.BuildVars.MINGW_TOOLCHAIN ? "mingw" : "linux";
+        if(!arg0) throw new Error("Can't resolve "+name+" bison executable");
+        super(ts, name+"/lex", {
             Role:  ToolCli.Role.Compile,
             ActionStage: "build",
             Semantics: ToolCli.Semantics.ManyToMany,
@@ -47,9 +49,10 @@ class AR extends ToolCli
     {
         let exefile = "ar";
         let arg0 = jsmk.path.resolveExeFile(exefile, 
-                                            ts.BuildVars.LINUX_TOOLCHAIN);
-        if(!arg0) throw new Error("Can't resolve linux AR executable");
-        super(ts, "linux/ar", {
+                                            ts.BuildVars.MINGW_TOOLCHAIN ? ts.BuildVars.MINGW_TOOLCHAIN : ts.BuildVars.LINUX_TOOLCHAIN);
+        let name = ts.BuildVars.MINGW_TOOLCHAIN ? "mingw" : "linux";
+        if(!arg0) throw new Error("Can't resolve "+name+" AR executable");
+        super(ts, name+"/ar", {
             Role:  ToolCli.Role.Archive,
             ActionStage: "build",
             Semantics: ToolCli.Semantics.ManyToOne,

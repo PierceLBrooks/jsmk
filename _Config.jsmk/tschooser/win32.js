@@ -9,40 +9,78 @@ exports.GetToolsets = function()
     //let vs17 = jsmk.LoadConfig("toolset/vs17.js").Toolset;
     let vs22 = jsmk.LoadConfig("toolset/vs22.js").Toolset;
     let clang = jsmk.LoadConfig("toolset/clang.js").Toolset;
+    let mingw = jsmk.LoadConfig("toolset/mingw.js").Toolset;
 
     let result = [];
+	let results = [];
+
+    results.push([teensy, "teensyLC"]);
+    results.push([teensy, "teensy40"]);
+    results.push([teensy, "teensy40_oc"]);
+    for(let r=0;r<results.length;r++)
+    {
     try
     {
-        result.push(new teensy("teensyLC"));
-        result.push(new teensy("teensy40"));
-        result.push(new teensy("teensy40_oc"));
+        result.push(new (results[r][0])(results[r][1]));
     }
     catch(err)
     {
         jsmk.DEBUG("tschooser: no teensy dev on windows " + err);
+        results.splice(r, 1);
+        r -= 1;
     }
+    }
+    if(results.length == 0)
+    {
+        jsmk.WARNING("tschooser: no teensy dev on windows");
+    }
+    results = [];
 
+    results.push([esp8266, "robodyn"]);
+    results.push([esp8266, "d1_mini"]);
+    results.push([esp8266, "generic"]);
+    results.push([arduino, "uno"]);
+    for(let r=0;r<results.length;r++)
+    {
     try
     {
-        result.push(new esp8266("robodyn"));
-        result.push(new esp8266("d1_mini"));
-        result.push(new esp8266("generic"));
-        result.push(new arduino("uno"));
+        result.push(new (results[r][0])(results[r][1]));
     }
     catch(err)
     {
         jsmk.DEBUG("tschooser: no arduino dev on windows "+err);
+        results.splice(r, 1);
+        r -= 1;
     }
-    
+    }
+    if(results.length == 0)
+    {
+        jsmk.WARNING("tschooser: no arduino dev on windows");
+    }
+    results = [];
+
+    results.push([vs22, vs22.Arch.x86_64]);
+    results.push([clang, undefined]);
+    results.push([mingw, undefined]);
+    for(let r=0;r<results.length;r++)
+    {
     try
     {
-        result.push(new vs22(vs22.Arch.x86_64));
-        result.push(new clang());
+        result.push(new (results[r][0])(results[r][1]));
     }
     catch(err)
     {
-        jsmk.WARNING("tschooser: no c++ dev on windows " + err);
+        jsmk.DEBUG("tschooser: no c++ dev on windows " + err);
+        results.splice(r, 1);
+        r -= 1;
     }
+    }
+    if(results.length == 0)
+    {
+        jsmk.WARNING("tschooser: no c++ dev on windows");
+    }
+    results = [];
+
     console.log(`win32 tschooser: ${result.length} toolsets.`);
     return result;
 };

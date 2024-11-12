@@ -11,9 +11,10 @@ class CC extends GCC
             invoc = "gcc";
         let exefile = invoc;  // for cross compile, may have preamble
         let arg0 = jsmk.path.resolveExeFile(exefile,
-                                    ts.BuildVars.LINUX_TOOLCHAIN);
-        if(!arg0) throw new Error(`Can't resolve linux ${exefile}`);
-        super(ts, `linux/${invoc}`, arg0);
+                                    ts.BuildVars.MINGW_TOOLCHAIN ? ts.BuildVars.MINGW_TOOLCHAIN : ts.BuildVars.LINUX_TOOLCHAIN);
+        let name = ts.BuildVars.MINGW_TOOLCHAIN ? "mingw" : "linux";
+        if(!arg0) throw new Error(`Can't resolve ${name} ${exefile}`);
+        super(ts, `${name}/${invoc}`, arg0);
 
         this.Define({});
 
